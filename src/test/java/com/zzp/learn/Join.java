@@ -1,9 +1,5 @@
 package com.zzp.learn;
 
-import ch.qos.logback.core.util.TimeUtil;
-
-import java.util.concurrent.TimeUnit;
-
 /**
  * Desc 测试join
  * Created by zzp
