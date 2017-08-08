@@ -29,17 +29,19 @@ public class FairAndUnfair {
         }
         @Override
         public void run() {
+            System.out.println(11);
             ReentrantLock2 fairUnfair = (ReentrantLock2) this.lock;
             System.out.println("lock by [" + Thread.currentThread().getName() + "]" + fairUnfair.getQueuedThreads());
         }
     }
 
 
-    public static class ReentrantLock2 extends ReentrantLock {
+    public class ReentrantLock2 extends ReentrantLock {
         public ReentrantLock2(boolean fair) {
             super(fair);
         }
 
+        @Override
         public Collection<Thread> getQueuedThreads() {
             List<Thread> arrayList = new ArrayList<Thread>(super.getQueuedThreads());
             Collections.reverse(arrayList);

@@ -10,12 +10,18 @@ import java.util.concurrent.locks.Lock;
  * on 2017/8/8.7:50
  */
 public class FairAndUnFairTest {
-    private static Lock fairLock = new FairAndUnfair.ReentrantLock2(Boolean.TRUE);
-    private static Lock unFairLock = new FairAndUnfair.ReentrantLock2(Boolean.FALSE);
-    FairAndUnfair fairAndUnfair = new FairAndUnfair();
+
+    static FairAndUnfair fairAndUnfair = new FairAndUnfair();
+    private static Lock fairLock = fairAndUnfair.new ReentrantLock2(Boolean.TRUE);
+    private static Lock unFairLock = fairAndUnfair.new ReentrantLock2(Boolean.FALSE);
 
     @Test
     public void testFair() {
         fairAndUnfair.testLock(fairLock);
+    }
+
+    @Test
+    public void testUnFair() {
+        fairAndUnfair.testLock(unFairLock);
     }
 }
