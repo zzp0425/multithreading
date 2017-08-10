@@ -1,5 +1,6 @@
 package com.zzp.learn.mode;
 
+import com.zzp.learn.util.SleepUtil;
 import org.junit.Test;
 import sun.security.jca.GetInstance;
 
@@ -16,7 +17,6 @@ public class SingletonTest {
 
     @Test
     public void testSingleton() {
-        List<Singleton> singletons = new ArrayList<>();
         ExecutorService executors = Executors.newFixedThreadPool(1000);
         List<GetSingleton> calls = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
@@ -24,11 +24,15 @@ public class SingletonTest {
         }
         try {
             List<Future<Singleton>> futures = executors.invokeAll(calls);
-
+            SleepUtil.second(5);
             for (int i = 0; i < 999; i++) {
-                System.out.println(futures.get(i).equals(futures.get(i + 1)));
+                Singleton singleton = futures.get(i).get();
+                Singleton singleton1 = futures.get(i + 1).get();
+                System.out.println(singleton == singleton1);
             }
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
