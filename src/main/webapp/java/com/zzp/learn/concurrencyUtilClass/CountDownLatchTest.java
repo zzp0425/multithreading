@@ -4,6 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Desc CountDownLatch可以实现join的功能，并且比join的功能更多
+ *      CountDownLatch允许一个或多个线程等待其他线程完成操作
  * Created by zzp
  * on 2017/8/11.7:08
  */
