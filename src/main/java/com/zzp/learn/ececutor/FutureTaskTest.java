@@ -3,7 +3,8 @@ package com.zzp.learn.ececutor;
 import java.util.concurrent.*;
 
 /**
- * Desc
+ * Desc 当FutureTask处于未启或已完成时，执行FutureTask.get()方法将导致调用线程阻塞
+ *      当FutureTask处于已完成状态时，执行FutureTask.get()方法将导致调用线程立即返回结果或抛出异常
  * Created by zzp
  * on 2017/8/14.22:51
  */
@@ -25,7 +26,7 @@ public class FutureTaskTest {
         @Override
         public Long call() throws Exception {
             long sum = 0L;
-            for (int i = 0; i < 1000000000; i++) {
+            for (int i = 0; i < 1000; i++) {
                 sum += i;
                 System.out.println(i);
             }
